@@ -25,6 +25,10 @@ data <-
 ```
 
 ```{r}
-data
+# devtools::install_github('JiaxiangBU/add2prep')
+library(add2prep)
+data %>% 
+  # filter(add2prep::regex_in(y,'app|ba'))
+  # filter(stringr::str_subset(y %in% str_subset(y,'app|ba')))
 ```
 
