@@ -1,0 +1,35 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# add2prep
+
+The goal of add2prep is to 
+save time to do data preprocessing.
+
+## Installation
+
+You can install the released version of add2prep from [Github](https://github.com/JiaxiangBU/add2prep) with:
+
+```{r eval=F}
+devtools::install_github('JiaxiangBU/add2prep')
+```
+
+```{r eval=F}
+library(add2prep)
+```
+
+## Example
+
+See the vignettes.
+

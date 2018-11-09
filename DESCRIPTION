@@ -1,0 +1,17 @@
+Package: add2prep
+Type: Package
+Title: R functions for data preprocessing
+Version: 0.1.0
+Authors@R: person("Jiaxiang", "", "Li", role = c("aut", "cre"), email = "alex.lijiaxiang@foxmail.com")
+Maintainer: Jiaxiang Li <alex.lijiaxiang@foxmail.com>
+Description: Regular Expression in filter and so on.
+License: MIT + file LICENSE
+URL: https://github.com/JiaxiangBU/add2prep
+BugReports: https://github.com/JiaxiangBU/add2prep/issues
+Encoding: UTF-8
+LazyData: TRUE
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.1.0
