@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 library(tidyverse)
 data <- 
   data.frame(
-    y = c('apple','banana')
+    y = c('apple','banana','peach')
   )
 ```
 
@@ -28,7 +28,7 @@ data <-
 # devtools::install_github('JiaxiangBU/add2prep')
 library(add2prep)
 data %>% 
-  # filter(add2prep::regex_in(y,'app|ba'))
+  filter(regex_in(y,'app|ba'))
   # filter(stringr::str_subset(y %in% str_subset(y,'app|ba')))
 ```
 
