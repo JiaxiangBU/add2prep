@@ -1,0 +1,96 @@
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+bibliography: ../bib/add.bib
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vegnette and related built functions are inspired from [@Rickert2018], who shows a idea to dig the R package download trend and to find the "good" package to learn and download.
+
+>
+Searching for R packages is a vexing problem for both new and experienced R users. With over 13,000 packages already on CRAN, and new packages arriving at a rate of almost 200 per month, it is impossible to keep up. Package names can be almost anything, and they are rarely informative, so searching by name is of little help. I make it a point to look at all of the new packages arriving on CRAN each month, but after a month or so, when asked about packages related to **some particular topic**, more often than not, I have little more to offer than a vague memory that I saw something that might be useful.
+[@Rickert2018]
+
+>
+Likewise, knowing something of an author’s background, his or her experience writing other R packages, and prominent R developers he or she may have collaborated with is also helpful in assessing whether to give a newly found package is worth a try.
+[@Rickert2018]
+
+```{r}
+pkg_list <- function(vec){
+    pkg_list <- 
+        findPackage(vec) %>% 
+        as_tibble
+    return(pkg_list)
+    }
+```
+
+```{r}
+vec <- c('NMF','N-NMF','negative matrix factorization')
+pkg_list(vec)
+```
+
+
+```{r}
+download_log <- function(vec){
+    pkg_list(vec) %>% 
+    rename_all(tolower) %>% 
+    arrange(desc(score)) %>% 
+    distinct(name) %>% 
+    # head(100) %>% 
+    .$name %>% 
+    # 可以插入 vector，所以不需要map
+    cran_stats()
+}
+```
+
+```{r}
+download_log(vec)
+```
+
+```{r}
+download_by_month <- function(vec){
+    download_log(vec) %>% 
+    group_by(package) %>% 
+    summarize(downloads = mean(downloads)) %>%
+    arrange(desc(downloads))
+}
+```
+
+```{r}
+download_by_month(vec)
+```
+
+
+```{r}
+library(lubridate)
+download_trend <- function(vec){
+    download_log <- download_log(vec)
+    download_by_month <- download_by_month(vec)
+    download_log %>% 
+    filter(year(end) >= 2017) %>% 
+    filter(package %in% download_by_month[1:10,]$package) %>% 
+    mutate(is_high = package %in% download_by_month[1:5,]$package) %>% 
+    ggplot(aes(x=end,y=downloads,col=package)) + 
+    geom_line() + 
+    facet_wrap(~is_high,scales = 'free_y')
+}
+```
+
+```{r}
+download_trend(vec)
+```
+
+
+From this plot, we find the demand of `NMF` package descreases a lot.

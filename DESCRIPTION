@@ -16,4 +16,6 @@ Suggests:
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0
 Imports: 
-    magrittr
+    magrittr,
+    packagefinder,
+    dlstats
