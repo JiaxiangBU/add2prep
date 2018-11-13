@@ -1,6 +1,6 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "Track the packages you are intertested in"
+author: "Jiaxiang Li"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 bibliography: ../bib/add.bib
@@ -27,6 +27,9 @@ Searching for R packages is a vexing problem for both new and experienced R user
 Likewise, knowing something of an author’s background, his or her experience writing other R packages, and prominent R developers he or she may have collaborated with is also helpful in assessing whether to give a newly found package is worth a try.
 [@Rickert2018]
 
+## Get the list of packages
+
+
 ```{r}
 pkg_list <- function(vec){
     pkg_list <- 
@@ -35,6 +38,11 @@ pkg_list <- function(vec){
     return(pkg_list)
     }
 ```
+
+```{r}
+dump(pkg_list,file = here('R','pkg_list.R'))
+```
+
 
 ```{r}
 vec <- c('NMF','N-NMF','negative matrix factorization')
