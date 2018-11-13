@@ -2,5 +2,6 @@ pandoc: 2.3.1
 pkgdown: 1.1.0.9000
 pkgdown_sha: 012d46f513daf68d24bfee7e3a1622137aa62228
 articles:
+  package_download: package_download.html
   repex_in: repex_in.html
 

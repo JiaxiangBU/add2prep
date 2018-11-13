@@ -29,76 +29,28 @@ Likewise, knowing something of an author’s background, his or her experience w
 
 ## Get the list of packages
 
-
 ```{r}
-pkg_list <- function(vec){
-    pkg_list <- 
-        findPackage(vec) %>% 
-        as_tibble
-    return(pkg_list)
-    }
-```
-
-```{r}
-dump(pkg_list,file = here('R','pkg_list.R'))
-```
-
-
-```{r}
+library(add2prep)
 vec <- c('NMF','N-NMF','negative matrix factorization')
-pkg_list(vec)
+add2prep::pkg_list(vec)
 ```
 
-
-```{r}
-download_log <- function(vec){
-    pkg_list(vec) %>% 
-    rename_all(tolower) %>% 
-    arrange(desc(score)) %>% 
-    distinct(name) %>% 
-    # head(100) %>% 
-    .$name %>% 
-    # 可以插入 vector，所以不需要map
-    cran_stats()
-}
-```
+## Get these packages' download counts
 
 ```{r}
 download_log(vec)
 ```
 
-```{r}
-download_by_month <- function(vec){
-    download_log(vec) %>% 
-    group_by(package) %>% 
-    summarize(downloads = mean(downloads)) %>%
-    arrange(desc(downloads))
-}
-```
+## Get the monthly average download counts
 
 ```{r}
 download_by_month(vec)
 ```
 
-
-```{r}
-library(lubridate)
-download_trend <- function(vec){
-    download_log <- download_log(vec)
-    download_by_month <- download_by_month(vec)
-    download_log %>% 
-    filter(year(end) >= 2017) %>% 
-    filter(package %in% download_by_month[1:10,]$package) %>% 
-    mutate(is_high = package %in% download_by_month[1:5,]$package) %>% 
-    ggplot(aes(x=end,y=downloads,col=package)) + 
-    geom_line() + 
-    facet_wrap(~is_high,scales = 'free_y')
-}
-```
+## Get the trend of the download counts
 
 ```{r}
 download_trend(vec)
 ```
-
 
 From this plot, we find the demand of `NMF` package descreases a lot.

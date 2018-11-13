@@ -18,4 +18,6 @@ RoxygenNote: 6.1.1
 Imports: 
     magrittr,
     packagefinder,
-    dlstats
+    dlstats,
+    here,
+    tibble
