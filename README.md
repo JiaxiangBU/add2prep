@@ -26,4 +26,4 @@ library(add2prep)
 
 ## Example
 
-See the vignettes.
+See the [vignettes](https://jiaxiangbu.github.io/add2prep/articles/).

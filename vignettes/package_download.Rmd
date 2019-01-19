@@ -3,7 +3,7 @@ title: "Track the packages you are intertested in"
 author: "Jiaxiang Li"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
-bibliography: ../bib/add.bib
+bibliography: add.bib
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
@@ -29,28 +29,31 @@ Likewise, knowing something of an author’s background, his or her experience w
 
 ## Get the list of packages
 
-```{r}
+```{r eval=F}
 library(add2prep)
+library(tidyverse)
 vec <- c('NMF','N-NMF','negative matrix factorization')
-add2prep::pkg_list(vec)
+pkg_list(vec)
 ```
 
 ## Get these packages' download counts
 
-```{r}
+```{r eval=F}
 download_log(vec)
 ```
 
 ## Get the monthly average download counts
 
-```{r}
+```{r eval=F}
 download_by_month(vec)
 ```
 
 ## Get the trend of the download counts
 
-```{r}
+```{r eval=F}
 download_trend(vec)
 ```
 
 From this plot, we find the demand of `NMF` package descreases a lot.
+
+## Reference {-}

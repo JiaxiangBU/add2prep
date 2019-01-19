@@ -14,5 +14,5 @@
 pkg_list <-
 function(vec){
     packagefinder::findPackage(vec) %>%
-    tibble::as_tibble
+    tibble::as_tibble()
     }
