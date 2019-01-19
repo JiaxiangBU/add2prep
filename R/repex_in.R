@@ -6,11 +6,11 @@
 #' @return Logical. A column of logical values.
 #' @author Jiaxiang Li \email{alex.lijiaxiang@foxmail.com}
 #'
-#' @import tidyverse
+#' @import stringr
 #'
 #' @seealso str_subset
 #' @export
 
 regex_in <- function(x,regex = '.'){
-    x %in% str_subset(x,regex)
+    x %in% stringr::str_subset(x,regex)
 }

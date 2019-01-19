@@ -20,4 +20,7 @@ Imports:
     packagefinder,
     dlstats,
     here,
-    tibble
+    tibble,
+    dplyr,
+    ggplot2,
+    stringr
